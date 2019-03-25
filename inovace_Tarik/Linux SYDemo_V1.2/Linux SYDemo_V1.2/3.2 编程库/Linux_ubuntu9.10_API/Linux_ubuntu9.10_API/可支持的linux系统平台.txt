@@ -1,0 +1,6 @@
+基于如下平台，我们进行过测试，下面是系统版本，和内核版本：
+1.	ubuntu9.10  内核：Linux 2.6.31
+2.	fedora17    内核：Linux  3.4.39
+
+因linux版本很多，未测试发行版Linux，客户可以依据各自平台，按照我们《指纹模块USB驱动调试说明（linux）.doc》进行相关调试开发:
+OpenSUSE  Debian Mandriva Mint Gentoo CentOS FreeBSD

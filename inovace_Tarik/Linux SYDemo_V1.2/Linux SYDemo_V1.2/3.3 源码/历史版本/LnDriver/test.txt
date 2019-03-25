@@ -1,0 +1,303 @@
+*****into PSOpenDevice function******
+nDeviceType is 0
+DEVICE_USB is open
+into usbfs_search()
+=============into while===========
+=============into while===========
+=============into while===========
+strlen(filename) is 3 ok
+name is digit ok
+/proc/bus/usb/002
+stat() is ok
+if it's a dir,then open
+into usbfs_search()
+=============into while===========
+=============into while===========
+=============into while===========
+strlen(filename) is 3 ok
+name is digit ok
+/proc/bus/usb/002/007
+stat() is ok
+if is a REG file
+---------into test_file()---------
+vendorID is 0453
+vendorID is 9005
+open file is success
+read file is success!
+desc.blength == desc
+=== /proc/bus/usb/002/007 ===
+  bLength         = 18
+  bDescriptorType = 1
+  bcdUSB          = 0100
+  idVendor        = 0453
+  idProduct       = 9005
+  bcdDevice       = 0100
+vid pid is equal! and return ok
+usbfs_search end !
+dir is close!
+usbfs_search end !
+dir is close!
++++++++into make_device function++++++
+return is 5
+Open usb success
+pPwd is 
+ is time to PSVfyPwd
+=========PSVfyPwd is begin=======
+cContent is --------into FillPackage function-----
+----totalLEN is 10, FillPackage is end----
+FillPackage return num is 10
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 16
+pusb_endpoint_write is ok
+PSVfyPwd SendPackage function is ok!
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+PSVfyPwd GetPackage function is ok!
+VerifyResponsePackage return is 0
+Verify pwd ok
+Write User info:test data to write 123456
+--------into FillPackage function-----
+----totalLEN is 39, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 45
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+--------into FillPackage function-----
+----totalLEN is 7, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 13
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+Read User info:test data to write 123456
+Enroll: Please press finger1......
+--------into FillPackage function-----
+----totalLEN is 6, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 12
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+Get FingerPrint OK,0
+--------into FillPackage function-----
+----totalLEN is 7, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 13
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+Enroll: Please Repress finger2......
+--------into FillPackage function-----
+----totalLEN is 6, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 12
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+Get FingerPrint OK
+--------into FillPackage function-----
+----totalLEN is 7, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 13
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+--------into FillPackage function-----
+----totalLEN is 6, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 12
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+--------into FillPackage function-----
+----totalLEN is 9, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 15
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+
+begin test Search Finger....
+
+Search: Please Repress finger......
+--------into FillPackage function-----
+----totalLEN is 6, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 12
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+Get FingerPrint OK
+--------into FillPackage function-----
+----totalLEN is 7, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 13
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+--------into FillPackage function-----
+----totalLEN is 11, FillPackage is end----
+======into SendPackage function====
+----into BulkSendPackage function----
+pusb_endpoint_open is ok
+---into pusb_endpoint_write function---
+time is not equal 0
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+Bulk send 17
+pusb_endpoint_write is ok
+-----into GetPackage function-----
+----into BulkRecvPackage function----
+pusb_endpoint_open function is ok
+=====into pusb_endpoint_rw function=====
+pusb_endpoint_rw while
+begin ioctl
+pusb_end_point_read function is ok
+BulkRecvPackage function is end
+Search OK
+Close device ok!

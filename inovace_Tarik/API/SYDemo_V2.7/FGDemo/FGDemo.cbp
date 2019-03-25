@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="FGDemo" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Win32 Release">
+				<Option output="C:/Users/ahsan/Desktop/fingerprint/inovace_Tarik/API/SYDemo_V2.7/FGDemo/Release/FGDemo" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-fexceptions" />
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_AFXDLL" />
+					<Add option="-D_MBCS" />
+				</Compiler>
+				<Linker>
+					<Add library="Shlwapi" />
+				</Linker>
+			</Target>
+			<Target title="Win32 Debug">
+				<Option output="Debug/SYDemo" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-fexceptions" />
+					<Add option="-g" />
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_WINDOWS" />
+					<Add option="-D_AFXDLL" />
+					<Add option="-D_MBCS" />
+				</Compiler>
+				<Linker>
+					<Add library="Shlwapi" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="DLGCOM.cpp" />
+		<Unit filename="DLGCOM.h" />
+		<Unit filename="DlgFGDB.cpp" />
+		<Unit filename="DlgFGDB.h" />
+		<Unit filename="DlgNotepad.cpp" />
+		<Unit filename="DlgNotepad.h" />
+		<Unit filename="DlgUser.cpp" />
+		<Unit filename="DlgUser.h" />
+		<Unit filename="FGDemo.cpp" />
+		<Unit filename="FGDemo.h" />
+		<Unit filename="FGDemo.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="FGDemoDlg.cpp" />
+		<Unit filename="FGDemoDlg.h" />
+		<Unit filename="ImageChageURUtoFPC.cpp" />
+		<Unit filename="ImageChangeURUtoFPC.h" />
+		<Unit filename="ReadMe.txt" />
+		<Unit filename="StdAfx.cpp" />
+		<Unit filename="StdAfx.h" />
+		<Unit filename="ToolEx/BCMenu.cpp" />
+		<Unit filename="ToolEx/BCMenu.h" />
+		<Unit filename="ToolEx/BtnST.cpp" />
+		<Unit filename="ToolEx/BtnST.h" />
+		<Unit filename="ToolEx/CeXDib.cpp" />
+		<Unit filename="ToolEx/CeXDib.h" />
+		<Unit filename="ToolEx/J_EditEx.cpp" />
+		<Unit filename="ToolEx/J_EditEx.h" />
+		<Unit filename="ToolEx/PathDialog.cpp" />
+		<Unit filename="ToolEx/PathDialog.h" />
+		<Unit filename="ToolEx/ShadeButtonST.cpp" />
+		<Unit filename="ToolEx/ShadeButtonST.h" />
+		<Unit filename="ToolEx/XInfoTip.cpp" />
+		<Unit filename="ToolEx/XInfoTip.h" />
+		<Unit filename="res/1FGDemo.ico" />
+		<Unit filename="res/2FGDemo.ico" />
+		<Unit filename="res/FGDemo.ico" />
+		<Unit filename="res/FGDemo.rc2" />
+		<Unit filename="res/Logo.bmp" />
+		<Unit filename="res/No3_32x32x256.ico" />
+		<Unit filename="res/Ok3_32x32x256.ico" />
+		<Unit filename="res/manifest.xml" />
+		<Unit filename="resource.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

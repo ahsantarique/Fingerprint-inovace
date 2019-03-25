@@ -1,0 +1,13 @@
+#ifndef _SERIAL_H
+#define _SERIAL_H 1
+#include  "vardef.h"
+/* serial.c */
+INT32 OpenComPort (INT32 ComPort, INT32 baudrate, INT32 databit,
+		   const char *stopbit, char parity);
+void CloseComPort (void);
+void ClearComPort();
+INT32 ReadComPort (void *data, INT32 datalength);
+INT32 WriteComPort (UINT8 * data, INT32 datalength);
+INT32 SendFile (const char *pathname, INT32 echo);
+
+#endif /* serial.c */

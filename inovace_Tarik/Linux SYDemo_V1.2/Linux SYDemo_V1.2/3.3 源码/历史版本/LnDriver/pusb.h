@@ -1,0 +1,49 @@
+#ifndef PUSB_H
+#define PUSB_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* Simple portable USB interface */
+
+typedef struct tagUSB_device_t *pusb_device_t;
+typedef struct tagUSB_endpoint_t *pusb_endpoint_t;
+
+pusb_device_t pusb_search_open(int vendorID, int productID);
+pusb_device_t pusb_open(const char *path);
+int pusb_close(pusb_device_t dev);
+
+int pusb_control_msg(pusb_device_t dev,
+		     int request_type, int request,
+		     int value, int index, 
+		     unsigned char *buf, int size, int timeout);
+int pusb_set_configuration(pusb_device_t dev, int config);
+int pusb_set_interface(pusb_device_t dev, int interface, int alternate);
+
+int pusb_claim_interface(pusb_device_t dev,int interface);
+int pusb_release_interface(pusb_device_t dev,int interface);
+
+int pusb_ioctl (pusb_device_t dev,int interface,int code,void *data);
+
+pusb_endpoint_t pusb_endpoint_open(pusb_device_t dev, int epnum, int flags);
+int pusb_endpoint_read(pusb_endpoint_t ep, 
+		       unsigned char *buf, int size, int timeout);
+int pusb_endpoint_write(pusb_endpoint_t ep, 
+			const unsigned char *buf, int size, int timeout);
+int pusb_endpoint_close(pusb_endpoint_t ep);
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//int pusb_resetep(pusb_device_t dev, int st);
+int pusb_connectInfo(pusb_device_t dev,int devnum);
+int pusb_reset(pusb_device_t dev);
+int pusb_test(pusb_device_t dev,int epnum,const unsigned char* buf,int size);
+int pusb_clr_halt(pusb_device_t dev,int ifg);
+int pusb_connect(pusb_device_t dev);
+int pusb_disconnect(pusb_device_t dev);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#ifdef __cplusplus
+}
+#endif
+
+#endif

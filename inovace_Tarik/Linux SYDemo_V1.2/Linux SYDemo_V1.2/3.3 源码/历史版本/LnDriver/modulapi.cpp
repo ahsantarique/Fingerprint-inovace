@@ -1,0 +1,179 @@
+/***************************************************************************
+ *   Copyright (C) 2006 by root   *
+ *   root@localhost.localdomain   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+
+
+#ifdef HAVE_CONFIG_H
+#include <config.h>
+#endif
+
+#include <stdio.h>
+#include <string.h>
+#include <iostream>
+#include <cstdlib>
+#include "SYDevice.h"
+#include "SYProtocol.h"
+
+using namespace std;
+#define DEV_ADDR 0xffffffff
+extern int TestData();
+int main(int argc, char *argv[])
+{
+//   TestData();
+//   return 0;
+   int nRet,iType=0;
+//Open USB 
+   if(PSOpenDevice( DEVICE_USB,0,0)){
+	printf("Open usb success\n");
+	iType = DEVICE_USB;
+	goto OPEN_scc;
+   }
+   printf("Open usb fail!\n");
+
+//Open UDisk
+   if(PSOpenDevice( DEVICE_UDisk,0,0)){
+	   printf("Open UDisk success\n");
+	   iType = DEVICE_UDisk;
+	   goto OPEN_scc;
+	}
+   printf("Open UDisk fail!\n");
+return 0;
+         
+//Open Com
+  	if(PSOpenDevice( DEVICE_COM,0,57600/9600)){
+		iType = DEVICE_COM;
+		goto OPEN_scc;
+	}
+	printf("Open com fail!\n");
+
+   	return 0;
+ 
+OPEN_scc://Open dev success
+ //  printf("Open success\n");
+
+
+//验证密码
+   unsigned char pPwd[5]={0};
+   //printf("pPwd is %s\n is time to PSVfyPwd\n", pPwd);
+   if(PSVfyPwd(DEV_ADDR,pPwd)!=PS_OK)
+   {
+       printf("Verify pwd fail\n");
+	   PSCloseDevice();
+       return 0;
+   }
+   printf("Verify pwd ok\n");  
+  Delay(1000);
+//PSCloseDevice();
+//return 0;
+//写记事本
+   unsigned char pData[600]="test data to write 123456";
+   printf("Write User info:%s\n",pData);
+   if(PSWriteInfo(DEV_ADDR,1,pData)!=PS_OK)
+        printf("Data write error\n");
+   memset(pData,0,512);
+   Delay(100);
+//读记事本
+  if(PSReadInfo(DEV_ADDR,1,pData)!=PS_OK)
+       printf("Data Read error\n");
+   else
+       printf("Read User info:%s\n",pData);
+       
+       BYTE pImage[256][288];
+       int nImageLen;
+LabRe://录入指纹
+   Delay(10000);
+   printf("Enroll: Please press finger1......\n");
+ 
+   while((nRet=PSGetImage(DEV_ADDR))==PS_NO_FINGER) {
+	if(DEVICE_USB==iType)
+		PSReadInfo(DEV_ADDR,1,pData);
+       Delay(30);
+   }
+
+    printf("Get FingerPrint OK,%d\n",nRet);
+  /* if(PSUpImage(DEV_ADDR,pImage[0],&nImageLen)==PS_OK)
+          printf("Upimage ok\n");
+   else
+         printf("Up Image Fail\n");
+*/
+   if(PSGenChar(DEV_ADDR,CHAR_BUFFER_A)!=PS_OK)
+   {
+         printf("Gen Char fail!\n");
+         goto LabRe;
+   }
+   Delay(1000);
+   printf("Enroll: Please Repress finger2......\n");
+   while(PSGetImage(DEV_ADDR)==PS_NO_FINGER){
+	if(DEVICE_USB==iType)
+		PSReadInfo(DEV_ADDR,1,pData);
+       Delay(30);
+   }
+
+   printf("Get FingerPrint OK\n");
+
+ Delay(10);
+    if(PSGenChar(DEV_ADDR,CHAR_BUFFER_B)!=PS_OK)
+   {
+         printf("Gen Char fail!\n");
+         goto LabRe;
+   }
+   Delay(100);
+   nRet=PSRegModule(DEV_ADDR);
+   if(nRet!=PS_OK)
+   {
+       printf("Reg module fail!ErrCode=%d\n",nRet);
+       goto LabRe;
+   }
+   if(PSStoreChar(DEV_ADDR,CHAR_BUFFER_A,1)!=PS_OK)
+   {
+      printf("Store char fail\n");
+      goto LabRe;
+   }
+   printf("\nbegin test Search Finger....\n\n");
+LabSearch://搜索指纹
+     Delay(1000);
+     printf("Search: Please Repress finger......\n");
+   while(PSGetImage(DEV_ADDR)==PS_NO_FINGER){
+	if(DEVICE_USB==iType)
+		PSReadInfo(DEV_ADDR,1,pData);
+       Delay(10);
+   }
+
+   printf("Get FingerPrint OK\n");
+
+    if(PSGenChar(DEV_ADDR,CHAR_BUFFER_A)!=PS_OK)
+   {
+         printf("Gen Char fail!\n");
+         goto LabRe;
+   }
+   int nFinger;
+   if(PSSearch(DEV_ADDR,CHAR_BUFFER_A,0,10,&nFinger)!=PS_OK)
+   {
+       printf("Search Fail\n");
+       goto LabSearch;
+   }
+   printf("Search OK\n");
+//   goto LabSearch;
+Delay(2000);
+//关闭设备
+   PSCloseDevice();
+printf("Close device ok!\n");
+ 
+   return EXIT_SUCCESS;
+}
